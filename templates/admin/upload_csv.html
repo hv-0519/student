@@ -1,0 +1,35 @@
+{% extends "admin/admin_base.html" %}
+
+{% block title %}Upload Questions via CSV{% endblock %}
+
+{% block admin_nav_links %}
+    <a href="{{ url_for('admin_dashboard', username=username) }}">Dashboard</a>
+    <a href="{{ url_for('admin_exams', username=username) }}">Exams</a>
+    <a href="{{ url_for('students', username=username) }}">Students</a>
+    <a href="{{ url_for('risk_analysis', username=username) }}">Risk Analysis</a>
+    <a href="{{ url_for('behavior_logs', username=username) }}">Behavior Log</a>
+    <a href="#" id="logout-link">Logout</a>
+{% endblock %}
+
+{% block content %}
+<h1>Upload Questions for Exam ID: {{ title }}</h1>
+
+{% if success is defined %}
+    {% if success %}
+        <div class="alert success">Questions uploaded successfully!</div>
+    {% else %}
+        <div class="alert error">Upload failed: {{ error_msg }}</div>
+    {% endif %}
+{% endif %}
+
+<form method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="csv_file">Select CSV File</label>
+        <input type="file" name="csv_file" id="csv_file" accept=".csv" required>
+        <small>Expected columns: question_text, option_a, option_b, option_c, option_d, correct_option, marks, wrong_answer_explanation (optional)</small>
+    </div>
+    <button type="submit" class="btn">Upload CSV</button>
+</form>
+
+<a href="{{ url_for('admin_exams', username=username) }}" class="btn-secondary">Back to Exams</a>
+{% endblock %}

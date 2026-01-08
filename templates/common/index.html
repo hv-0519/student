@@ -1,0 +1,43 @@
+{% extends "common/base_public.html" %}
+
+{% block title %}Welcome to ExamPro{% endblock %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1 class="welcome-title">Welcome to ExamPro</h1>
+        <p class="welcome-subtitle">
+            A modern, secure, and intelligent online examination platform designed for students and administrators.
+        </p>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="features">
+            <div class="feature-card">
+                <span class="feature-icon">🎯</span>
+                <h3>Secure Exams</h3>
+                <p>Real-time behavior monitoring with tab switch detection.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🤖</span>
+                <h3>Smart Proctoring</h3>
+                <p>AI-powered cheating detection using anomaly detection.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">📊</span>
+                <h3>Admin Analytics</h3>
+                <p>Powerful dashboard with score and risk insights.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta-section">
+        <h2 class="cta-title">Ready to Get Started?</h2>
+        <div class="cta-buttons">
+            <a href="{{ url_for('register') }}" class="btn btn-register">Create Free Account</a>
+            <a href="{{ url_for('login') }}" class="btn btn-register">Login to Dashboard</a>
+        </div>
+    </section>
+{% endblock %}

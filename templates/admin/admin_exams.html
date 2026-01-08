@@ -1,0 +1,52 @@
+{% extends "admin/admin_base.html" %}
+
+{% block title %}Manage Exams{% endblock %}
+
+{% block admin_nav_links %}
+    <a href="{{ url_for('admin_dashboard', username=username) }}">Dashboard</a>
+    <a href="{{ url_for('admin_exams', username=username) }}" class="active">Exams</a>
+    <a href="{{ url_for('students', username=username) }}">Students</a>
+    <a href="{{ url_for('risk_analysis', username=username) }}">Risk Analysis</a>
+    <a href="{{ url_for('behavior_logs', username=username) }}">Behavior Log</a>
+    <a href="#" id="logout-link">Logout</a>
+{% endblock %}
+
+{% block content %}
+<h1>Manage Exams</h1>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Subject</th>
+                <th>Date</th>
+                <th>Duration (min)</th>
+                <th>Total Marks</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if exams %}
+                {% for exam in exams %}
+                <tr>
+                    <td>{{ exam[0] }}</td>
+                    <td>{{ exam[1] }}</td>
+                    <td>{{ exam[2] }}</td>
+                    <td>{{ exam[3] }}</td>
+                    <td>{{ exam[4] }}</td>
+                    <td>{{ exam[5] }}</td>
+                    <td>
+                        <a href="{{ url_for('exams', exam_id=exam[0], username=username) }}" class="btn-small">View</a>
+                        <a href="{{ url_for('upload_csv', exam_id=exam[0], username=username) }}" class="btn-small">Upload Questions</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr><td colspan="7" class="no-data">No exams found.</td></tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+question_text,option_a,option_b,option_c,option_d,correct_option,wrong_answer_explanation,marks
+What is the output of print(2 + 3 * 4)?,20,14,24,9,B,Multiplication has higher precedence than addition,1
+Which keyword is used to create a function in Python?,func,def,function,define,B,The keyword 'def' is used to define functions,1
+What is the output of len("Hello")?,4,5,6,0,B,The string "Hello" has 5 characters,1
+Which of the following is a mutable data type?,tuple,string,list,int,C,List is mutable; tuple and string are immutable,1
+What does the // operator do in Python?,Floating division,Floor division,Exponentiation,Modulo,B,// returns the floor division result,1
+Which of these is used to define a block of code?,{},[],(),Colon,D,Colon is used to start an indented block in Python,1
+What is the correct way to comment a single line in Python?,// comment,# comment,/* comment */,<!-- comment -->,B,Single-line comments use #,1
+Which of these is a valid variable name?,2var,var_2,var-2,var 2,B,Variable names cannot start with a number and cannot have spaces or hyphens,1
+What is the output of print(type(3.5))?,<class 'int'>,<class 'float'>,<class 'str'>,<class 'complex'>,B,3.5 is a float,1
+Which method adds an element to the end of a list?,append(add),add(),insert(),append(),D,append() adds an item to the end of the list,1
+What is the output of print("Python"[0])?,P,p,y,Y,A,Python indexing is case-sensitive and first character is 'P',1
+Which of the following is not a Python keyword?,pass,eval,break,continue,B,eval is a function not a keyword,1
+How do you start a for loop in Python?,for i in range:,for i=1 to n,for (i=0;i<n;i++),foreach i in range,A,Correct Python syntax is: for i in range(),1
+What is the output of print(10 % 3)?,1,3,0,10,A,10 divided by 3 leaves remainder 1,1
+Which of the following creates a dictionary?,{},[],(),set(),A,{} creates a dictionary,1
+What is the output of print(bool(""))?,True,False,Error,0,B,Empty string evaluates to False,1
+Which operator is used for exponentiation?,^,**,%,//,B,** is the exponentiation operator,1
+Which of these is used to take input from user?,scanf(),input(),cin(),read(),B,input() reads from user,1
+What is the correct syntax to import the math module?,import math(),import math,include math,from math import *,B,import math is correct,1
+Which of the following will convert a string '123' to integer?,int('123'),str(123),float('123'),parseInt('123'),A,int('123') converts string to integer,1

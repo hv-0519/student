@@ -1,0 +1,66 @@
+{% extends "common/base_public.html" %}
+
+{% block title %}Register - ExamPro{% endblock %}
+
+{% block content %}
+<section>
+    <div class="form-page-container" style="max-width: 700px;">
+        <div class="form-page-header">
+            <h2>Create Your Account</h2>
+            <p>Join us and start your journey today</p>
+        </div>
+
+        <div class="modern-form-card">
+            <form method="POST" action="{{ url_for('register') }}" enctype="multipart/form-data">
+                <div class="form-grid-2col">
+                    <div class="modern-form-group">
+                        <label for="fname">First Name</label>
+                        <input type="text" id="fname" name="fname" placeholder="Enter First Name" required>
+                    </div>
+
+                    <div class="modern-form-group">
+                        <label for="lname">Last Name</label>
+                        <input type="text" id="lname" name="lname" placeholder="Enter Last Name" required>
+                    </div>
+
+                    <div class="modern-form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                    </div>
+
+                    <div class="modern-form-group">
+                        <label for="contact_no">Contact No</label>
+                        <input type="text" id="contact_no" name="contact_no" placeholder="+1234567890" required>
+                    </div>
+
+                    <div class="modern-form-group" style="grid-column: 1 / -1;">
+                        <label>Gender</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="gender" value="male" required> Male</label>
+                            <label><input type="radio" name="gender" value="female"> Female</label>
+                            <label><input type="radio" name="gender" value="other"> Other</label>
+                        </div>
+                    </div>
+
+                    <div class="modern-form-group">
+                        <label for="date_of_birth">Date of Birth</label>
+                        <input type="date" id="date_of_birth" name="date_of_birth" required>
+                    </div>
+
+                    <div class="modern-form-group" style="grid-column: 1 / -1;">
+                        <label for="address">Address</label>
+                        <textarea id="address" name="address" placeholder="Enter your full address"></textarea>
+                    </div>
+
+                    <div class="modern-form-group" style="grid-column: 1 / -1;">
+                        <label for="photo">Photo</label>
+                        <input type="file" id="photo" name="photo" accept="image/*">
+                    </div>
+                </div>
+
+                <button type="submit" class="modern-submit-btn">Register Now</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

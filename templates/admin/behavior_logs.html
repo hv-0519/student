@@ -1,0 +1,45 @@
+{% extends "admin/admin_base.html" %}
+
+{% block title %}Behavior Log{% endblock %}
+
+{% block admin_nav_links %}
+    <a href="{{ url_for('admin_dashboard', username=username) }}">Dashboard</a>
+    <a href="{{ url_for('admin_exams', username=username) }}">Exams</a>
+    <a href="{{ url_for('students', username=username) }}">Students</a>
+    <a href="{{ url_for('risk_analysis', username=username) }}">Risk Analysis</a>
+    <a href="{{ url_for('behavior_logs', username=username) }}" class="active">Behavior Log</a>
+    <a href="#" id="logout-link">Logout</a>
+{% endblock %}
+
+{% block content %}
+<h1>Proctoring Behavior Log</h1>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Exam</th>
+                <th>Event</th>
+                <th>Details</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if res %}
+                {% for log in res %}
+                <tr>
+                    <td>{{ log[1] }}</td>
+                    <td>{{ log[2] }}</td>
+                    <td><span class="event-{{ log[3]|lower }}">{{ log[3] }}</span></td>
+                    <td>{{ log[4] }}</td>
+                    <td>{{ log[5] }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr><td colspan="5" class="no-data">No behavior logs recorded.</td></tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Admin Dashboard - ExamPro{% endblock %}</title>
+
+    <!-- Common + Admin-specific CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Admin Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Exam<span>Pro</span></div>
+            <div class="nav-links">
+                {% block admin_nav_links %}{% endblock %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <main class="dashboard-container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>&copy; 2026 ExamPro - Online Examination System with ML Proctoring</p>
+        <p>Built for fair, secure, and efficient assessments</p>
+    </footer>
+
+    
+
+    {% block extra_js %}
+    <script>
+        const modal = document.getElementById('logout-modal');
+        const confirmBtn = document.getElementById('confirm-logout');
+        const cancelBtn = document.getElementById('cancel-logout');
+        const logoutLink = document.getElementById('logout-link');
+
+        logoutLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.style.display = 'flex';
+        });
+
+        cancelBtn.addEventListener('click', () => modal.style.display = 'none');
+        confirmBtn.addEventListener('click', () => {
+            window.location.href = "{{ url_for('logout') }}";
+        });
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.style.display = 'none';
+        });
+    </script>
+    {% endblock %}
+</body>
+</html>

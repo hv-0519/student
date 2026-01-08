@@ -1,0 +1,38 @@
+{% extends "admin/admin_base.html" %}
+
+{% block title %}Dashboard - Admin{% endblock %}
+
+{% block admin_nav_links %}
+    <a href="{{ url_for('admin_dashboard', username=username) }}" class="active">Dashboard</a>
+    <a href="{{ url_for('admin_exams', username=username) }}">Exams</a>
+    <a href="{{ url_for('students', username=username) }}">Students</a>
+    <a href="{{ url_for('risk_analysis', username=username) }}">Risk Analysis</a>
+    <a href="{{ url_for('behavior_logs', username=username) }}">Behavior Log</a>
+    <a href="#" id="logout-link">Logout</a>
+{% endblock %}
+
+{% block content %}
+<div class="welcome-section">
+    <h1>Welcome back, <span>{{ username }}</span></h1>
+    <p>Manage exams, monitor students, and ensure fair assessments with advanced proctoring.</p>
+</div>
+
+<div class="stats-grid">
+    <div class="stat-card">
+        <h3>Total Exams</h3>
+        <p class="stat-number">12</p>
+    </div>
+    <div class="stat-card">
+        <h3>Active Students</h3>
+        <p class="stat-number">348</p>
+    </div>
+    <div class="stat-card">
+        <h3>Flagged Attempts</h3>
+        <p class="stat-number">7</p>
+    </div>
+    <div class="stat-card">
+        <h3>Completed Today</h3>
+        <p class="stat-number">42</p>
+    </div>
+</div>
+{% endblock %}

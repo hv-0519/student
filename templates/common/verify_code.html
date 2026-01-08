@@ -1,0 +1,41 @@
+{% extends 'common/base_public.html' %}
+
+{% block title %}Verify Reset Code - ExamPro{% endblock %}
+
+{% block content %}
+<section>
+    <div class="form-page-container">
+        <div class="form-page-header">
+            <h2>Verify Reset Code</h2>
+            <p>We have sent a 6-digit code to your email. Please enter it below.</p>
+        </div>
+
+        {% if error %}
+            <p style="color: red; text-align: center; font-weight: bold;">{{ error }}</p>
+        {% endif %}
+
+        <div class="modern-form-card">
+            <form method="POST" action="{{ url_for('verify_code') }}">
+                <div class="modern-form-group">
+                    <label for="reset_code">Reset Code</label>
+                    <input type="text"
+                           id="reset_code"
+                           name="reset_code"
+                           placeholder="e.g. Ab3Xy9"
+                           maxlength="6"
+                           minlength="6"
+                           autocomplete="off"
+                           required
+                           autofocus>
+                </div>
+
+                <button type="submit" class="modern-submit-btn">Verify Code</button>
+            </form>
+
+            <p style="text-align: center; margin-top: 1rem;">
+                <a href="{{ url_for('forgot_password') }}">Request new code</a>
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}

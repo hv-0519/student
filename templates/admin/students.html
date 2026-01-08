@@ -1,0 +1,53 @@
+{% extends "admin/admin_base.html" %}
+
+{% block title %}Students{% endblock %}
+
+{% block admin_nav_links %}
+    <a href="{{ url_for('admin_dashboard', username=username) }}">Dashboard</a>
+    <a href="{{ url_for('admin_exams', username=username) }}">Exams</a>
+    <a href="{{ url_for('students', username=username) }}" class="active">Students</a>
+    <a href="{{ url_for('risk_analysis', username=username) }}">Risk Analysis</a>
+    <a href="{{ url_for('behavior_logs', username=username) }}">Behavior Log</a>
+    <a href="#" id="logout-link">Logout</a>
+{% endblock %}
+
+{% block content %}
+<h1>Registered Students</h1>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Photo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if res %}
+                {% for student in res %}
+                <tr>
+                    <td>{{ student[0] }}</td>
+                    <td>{{ student[1] }}</td>
+                    <td>{{ student[2] }}</td>
+                    <td>{{ student[3] }}</td>
+                    <td>{{ student[4] }}</td>
+                    <td>
+                        {% if student[5] %}
+                            <img src="{{ url_for('static', filename=student[5]) }}" alt="Photo" class="profile-thumb">
+                        {% else %}
+                            No photo
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr><td colspan="6" class="no-data">No students found.</td></tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
