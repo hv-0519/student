@@ -1,0 +1,504 @@
+/* ===================================== SIDEBAR ===================================== */
+
+.sidebar {
+    position: fixed;
+    left: -280px;
+    top: 0;
+    width: 280px;
+    height: 100vh;
+    transition: left 0.3s ease;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar-header {
+    padding: 25px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#sidebar-logo {
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 700;
+    cursor: default;
+}
+
+#sidebar-logo span {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.sidebar-close {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.sidebar-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-nav {
+    flex: 1;
+    padding: 50px 0;
+    overflow-y: auto;
+    background: linear-gradient(135deg, #ada996, #f2f2f2, #dbdbdb, #eaeaea);
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 25px;
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* .sidebar-link:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+} */
+
+/* .sidebar-link.active {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-left: 4px solid white;
+} */
+
+.link-icon {
+    font-size: 1.5rem;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.link-text {
+    flex: 1;
+    color: black;
+}
+
+.sidebar-footer {
+    padding: 20px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.logout-link {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.logout-link:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* ===================================== MAIN WRAPPER ===================================== */
+
+.main-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: margin-left 0.3s ease;
+}
+
+/* ===================================== NAVBAR UPDATES ===================================== */
+
+/* Hamburger Toggle Button */
+.sidebar-toggle {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #4c51bf;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+}
+
+.hamburger {
+    transition: all 0.3s ease;
+}
+
+/* Transform ☰ → × when sidebar open */
+.admin-layout.sidebar-open .hamburger {
+    transform: rotate(90deg);
+}
+
+.admin-layout.sidebar-open .hamburger::before {
+    content: '\00d7';
+    /* × symbol */
+    font-size: 1.4rem;
+}
+
+/* Sidebar Close Button (× inside sidebar) */
+.sidebar-close {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #cbd5e0;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: color 0.3s;
+}
+
+.sidebar-close:hover {
+    color: white;
+}
+
+/* .sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+} */
+
+/* Sidebar Slide In/Out */
+.sidebar {
+    width: 280px;
+    background: rgba(30, 41, 59, 0.85);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    position: fixed;
+    top: 70px;
+    bottom: 70px;
+    left: -280px;
+    transition: left 0.4s ease;
+    z-index: 999;
+    box-shadow: 4px 0 25px rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
+.admin-layout.sidebar-open .sidebar {
+    left: 0;
+}
+
+.admin-content {
+    margin-left: 0;
+    transition: margin-left 0.4s ease;
+    padding-bottom: 100px;
+}
+
+.admin-layout.sidebar-open .admin-content {
+    margin-left: 280px;
+}
+
+/* Mobile: Auto close when clicking outside */
+@media (max-width: 992px) {
+    .admin-layout.sidebar-open .admin-content {
+        margin-left: 0;
+    }
+}
+
+/* ===================================== DASHBOARD CONTENT ===================================== */
+
+.dashboard-container {
+    flex: 1;
+    padding: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Ensure content doesn't get hidden behind fixed footer */
+.admin-content {
+    flex: 1;
+    margin-left: 260px;
+    /* if sidebar is visible */
+    padding: 2rem;
+    padding-bottom: 100px;
+    /* KEY FIX: Creates space above footer */
+    min-height: calc(100vh - 140px);
+    overflow-y: auto;
+    background: transparent;
+    /* Lets your beautiful gradient show */
+}
+
+/* Optional: If using collapsible sidebar, adjust when closed */
+.admin-layout.sidebar-open .admin-content {
+    margin-left: 260px;
+}
+
+.admin-layout:not(.sidebar-open) .admin-content {
+    margin-left: 0;
+}
+
+/* Make welcome section look better with space */
+.welcome-section {
+    max-width: 900px;
+    margin: 60px auto 60px auto;
+    /* Centered + good bottom margin */
+    border-radius: 20px;
+    padding: 50px;
+    color: black;
+    box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+    background: rgba(255, 255, 255, 0.75);
+    /* Slight transparency to blend with gradient */
+    backdrop-filter: blur(10px);
+    text-align: center;
+}
+
+.welcome-section h1 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    color: black;
+}
+
+.welcome-section p {
+    font-size: 1.2rem;
+    color: #475569;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.welcome-section .highlight {
+    color: black;
+    text-decoration: underline;
+    text-decoration-color: black;
+    text-underline-offset: 8px;
+}
+
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+/* ===================================== LOGOUT MODAL ===================================== */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h2 {
+    font-size: 1.8rem;
+    color: #1f2937;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.modal-content p {
+    color: #6b7280;
+    margin-bottom: 30px;
+    font-size: 1.05rem;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+}
+
+.btn {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.btn-secondary:hover {
+    background: #e5e7eb;
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+}
+
+.btn-danger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(239, 68, 68, 0.3);
+}
+
+/* ===================================== RESPONSIVE DESIGN ===================================== */
+
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding: 20px;
+    }
+
+    .welcome-section {
+        padding: 30px;
+    }
+
+    .welcome-section h1 {
+        font-size: 2rem;
+    }
+
+    .welcome-section p {
+        font-size: 1rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        width: 100%;
+        left: -100%;
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome-section {
+        padding: 25px;
+    }
+
+    .welcome-section h1 {
+        font-size: 1.75rem;
+    }
+
+    .modal-content {
+        padding: 30px 25px;
+    }
+
+    .modal-actions {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    color: #cbd5e0;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.sidebar-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.sidebar-link.active {
+    background: #4c51bf;
+    color: white;
+    font-weight: 600;
+}
+
+.link-icon {
+    font-size: 1.4rem;
+    margin-right: 1rem;
+}
+
+.link-text {
+    font-size: 1.1rem;
+}
+
+.quick-actions {
+    max-width: 1000px;
+    margin: 3rem auto;
+    text-align: center;
+}
+
+.quick-actions h2 {
+    margin-bottom: 1.5rem;
+    color: #1e293b;
+}
+
+.action-buttons .btn {
+    margin: 0.5rem;
+    padding: 0.8rem 1.8rem;
+    font-size: 1.1rem;
+}
+
+/* Navbar height variable (easy to change later) */
+:root {
+    --navbar-height: 70px;
+}
+
+/* Navbar stays on top */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: var(--navbar-height);
+    width: 100%;
+    z-index: 1100;
+}
+
+/* Sidebar starts BELOW navbar */
+.sidebar {
+    position: fixed;
+    top: var(--navbar-height);
+    /* 🔥 KEY LINE */
+    left: 0;
+    width: 260px;
+    height: calc(100vh - var(--navbar-height));
+    /* 🔥 */
+    background: #1e1e2f;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+/* Sidebar visible */
+.sidebar.active {
+    transform: translateX(0);
+}
+
+/* Main content pushed below navbar */
+.main-wrapper {
+    padding-top: var(--navbar-height);
+    /* 🔥 prevents overlap */
+}
+

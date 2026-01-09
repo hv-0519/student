@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Admin Dashboard - ExamPro{% endblock %}</title>
+
+    <!-- Common + Admin-specific CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <!-- Close Button -->
+
+        <nav class="sidebar-nav">
+            {% block sidebar_links %}{% endblock %}
+        </nav>
+    </aside>
+
+    <!-- Main Content Wrapper -->
+    <div class="main-wrapper" id="main-wrapper">
+
+        <!-- Top Navbar -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <!-- Sidebar Toggle -->
+                <button class="sidebar-toggle" id="sidebar-toggle">ExamPro</button>
+
+                <div class="nav-links">
+                    <a href="{{ url_for('hello') }}">Home</a>
+                    <a href="{{ url_for('features') }}">Features</a>
+                    <a href="{{ url_for('about_us') }}">About</a>
+                    <a href="#" id="logout-link">Logout</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Dashboard Content -->
+        <main class="dashboard-container">
+            {% block content %}{% endblock %}
+        </main>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <p>&copy; 2026 ExamPro - Online Examination System with ML Proctoring</p>
+            <p>Built for fair, secure, and efficient assessments</p>
+        </footer>
+    </div>
+
+    <!-- Logout Modal -->
+    <div id="logout-modal" class="modal">
+        <div class="modal-content">
+            <h2>Confirm Logout</h2>
+            <p>Are you sure you want to logout?</p>
+            <div class="modal-actions">
+                <button id="cancel-logout" class="btn btn-secondary">Cancel</button>
+                <button id="confirm-logout" class="btn btn-danger">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    {% block extra_js %}
+    <script>
+        /* =======================
+           Sidebar Logic
+        ======================== */
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebarClose = document.getElementById('sidebar-close');
+
+        // Open / Toggle sidebar
+        sidebarToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            sidebar.classList.toggle('active');
+        });
+
+        // Close sidebar button
+        sidebarClose.addEventListener('click', (e) => {
+            e.stopPropagation();
+            sidebar.classList.remove('active');
+        });
+
+        // Close when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+
+        /* =======================
+           Logout Modal
+        ======================== */
+        const modal = document.getElementById('logout-modal');
+        const confirmBtn = document.getElementById('confirm-logout');
+        const cancelBtn = document.getElementById('cancel-logout');
+        const logoutLink = document.getElementById('logout-link');
+
+        logoutLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.style.display = 'flex';
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        confirmBtn.addEventListener('click', () => {
+            window.location.href = "{{ url_for('logout') }}";
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+    {% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+{% extends "admin/admin_base.html" %}
+
+{% block title %}Upload Questions via CSV{% endblock %}
+
+{% block admin_nav_links %}
+<a href="{{ url_for('admin_dashboard', username=username) }}">Dashboard</a>
+<a href="{{ url_for('admin_exams', username=username) }}">Exams</a>
+<a href="{{ url_for('students', username=username) }}">Students</a>
+<a href="{{ url_for('risk_analysis', username=username) }}">Risk Analysis</a>
+<a href="{{ url_for('behavior_logs', username=username) }}">Behavior Log</a>
+<a href="#">Logout</a>
+{% endblock %}
+
+{% block content %}
+
+<h1>Upload Questions for Exam: {{ title }}</h1>
+
+{% if status == "success" %}
+<div class="alert success">Questions uploaded successfully!</div>
+{% elif status == "already_uploaded" %}
+<div class="alert info">Questions already uploaded for this exam.</div>
+{% elif status == "error" %}
+<div class="alert error">{{ error_msg }}</div>
+{% endif %}
+
+{% if not already_uploaded %}
+<form method="POST" enctype="multipart/form-data">
+    <label>Select CSV File</label><br>
+    <input type="file" name="csv_file" accept=".csv" required>
+    <br><br>
+    <button type="submit">Upload CSV</button>
+</form>
+{% endif %}
+
+<hr>
+
+{% if questions and questions|length > 0 %}
+<h2>Uploaded Questions</h2>
+
+<table border="1" cellpadding="8" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Question</th>
+            <th>A</th>
+            <th>B</th>
+            <th>C</th>
+            <th>D</th>
+            <th>Correct</th>
+            <th>Marks</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for q in questions %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ q[0] }}</td>   {# question_text #}
+            <td>{{ q[1] }}</td>   {# option_a #}
+            <td>{{ q[2] }}</td>   {# option_b #}
+            <td>{{ q[3] }}</td>   {# option_c #}
+            <td>{{ q[4] }}</td>   {# option_d #}
+            <td>{{ q[5] }}</td>   {# correct_option #}
+            <td>{{ q[6] }}</td>   {# marks #}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% else %}
+<p>No questions found.</p>
+{% endif %}
+
+<br>
+<a href="{{ url_for('admin_exams', username=username) }}">← Back to Exams</a>
+
+{% endblock %}

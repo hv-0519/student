@@ -1,0 +1,131 @@
+{% extends "admin/admin_base.html" %}
+
+{% block title %}Dashboard - Admin{% endblock %}
+
+{% block sidebar_links %}
+<a href="{{ url_for('admin_dashboard', username=username) }}" class="sidebar-link">
+    <span class="link-icon">📊</span>
+    <span class="link-text">Dashboard</span>
+</a>
+<a href="{{ url_for('admin_exams', username=username) }}" class="sidebar-link">
+    <span class="link-icon">📝</span>
+    <span class="link-text">Exams</span>
+</a>
+<a href="{{ url_for('students', username=username) }}" class="sidebar-link">
+    <span class="link-icon">👥</span>
+    <span class="link-text">Students</span>
+</a>
+<a href="{{ url_for('risk_analysis', username=username) }}" class="sidebar-link">
+    <span class="link-icon">⚠️</span>
+    <span class="link-text">Risk Analysis</span>
+</a>
+<a href="{{ url_for('behavior_logs', username=username) }}" class="sidebar-link">
+    <span class="link-icon">📋</span>
+    <span class="link-text">Behavior Log</span>
+</a>
+<a href="{{ url_for('admin_dashboard', username=username) }}" class="sidebar-link">
+    <span class="link-icon">👨‍💼</span>
+    <span class="link-text">Profile</span>
+</a>
+{% endblock %}
+
+{% block content %}
+<div class="welcome-section">
+    <h1>Welcome back, <span class="highlight">{{ username }}</span></h1>
+    <p>Manage exams, monitor students, and ensure fair assessments with advanced proctoring.</p>
+</div>
+
+<div class="stats-grid">
+    <section class="features-section">
+        <div class="features">
+            <div class="feature-card">
+                <h3>Students On Board</h3>
+                <span class="feature-icon">{{ total_students_emoji }}</span>
+                <p>{{ total_student }} Students Enrolled.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Available Exams</h3>
+                <span class="feature-icon">{{ total_exam_emoji }}</span>
+                <p>{{ total_exams }} Exams Right Now On This Platform.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Admin Analytics</h3>
+                <span class="feature-icon">📊</span>
+                <p>Powerful dashboard with score and risk insights.</p>
+            </div>
+        </div>
+        
+        <br><br>
+        
+        <!-- Two Cards Side by Side -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+            
+            <!-- Recent Students Card -->
+            <div class="feature-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h3>Recent Students</h3>
+                    <a href="{{ url_for('students', username=username) }}" style="color: #667eea; text-decoration: none; font-weight: 600;">View All →</a>
+                </div>
+                <div class="table-container">
+                    {% if students and students|length > 0 %}
+                    <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>First Name</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for student in students %}
+                            <tr>
+                                <td>{{ student.username }}</td>
+                                <td>{{ student.first_name }}</td>
+                                <td>{{ student.email }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <p>No students registered yet</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Recent Exams Card -->
+            <div class="feature-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h3>Recent Exams</h3>
+                    <a href="{{ url_for('admin_exams', username=username) }}" style="color: #667eea; text-decoration: none; font-weight: 600;">View All →</a>
+                </div>
+                <div class="table-container">
+                    {% if exams and exams|length > 0 %}
+                    <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Duration (min)</th>
+                                <th>Marks</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for exam in exams %}
+                            <tr>
+                                <td>{{ exam.title }}</td>
+                                <td>{{ exam.duration_minutes }}</td>
+                                <td>{{ exam.marks }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <p>No exams created yet</p>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>
+
+{% endblock %}

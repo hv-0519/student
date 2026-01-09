@@ -1,0 +1,34 @@
+{% extends "admin/admin_base.html" %}
+
+{% block title %}Exam Details{% endblock %}
+
+{% block admin_nav_links %}
+    <a href="{{ url_for('admin_dashboard', username=username) }}">Dashboard</a>
+    <a href="{{ url_for('admin_exams', username=username) }}">Exams</a>
+    <a href="{{ url_for('students', username=username) }}">Students</a>
+    <a href="{{ url_for('risk_analysis', username=username) }}">Risk Analysis</a>
+    <a href="{{ url_for('behavior_logs', username=username) }}">Behavior Log</a>
+    <a href="#" id="logout-link">Logout</a>
+{% endblock %}
+
+{% block content %}
+<h1>Exam Details</h1>
+
+{% if exams %}
+    {% set exam = exams[0] %}
+    <div class="exam-detail-card">
+        <h2>{{ exam[1] }}</h2>
+        <p><strong>Subject:</strong> {{ exam[2] }}</p>
+        <p><strong>Date:</strong> {{ exam[3] }}</p>
+        <p><strong>Duration:</strong> {{ exam[4] }} minutes</p>
+        <p><strong>Total Marks:</strong> {{ exam[5] }}</p>
+        <p><strong>Instructions:</strong> {{ exam[6] or 'No instructions provided.' }}</p>
+
+        <div class="actions">
+            <a href="{{ url_for('upload_csv', exam_id=exam[0], username=username) }}" class="btn">Upload Questions (CSV)</a>
+        </div>
+    </div>
+{% else %}
+    <p class="no-data">Exam not found.</p>
+{% endif %}
+{% endblock %}

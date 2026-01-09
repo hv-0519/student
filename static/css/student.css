@@ -1,0 +1,253 @@
+/* Student Dashboard Theme - Soft Purple-Blue */
+body {
+    /* background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%); */
+    background: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+    color: white;
+    background-attachment: fixed;
+}
+
+.dashboard-container {
+    margin-top: 140px;
+}
+
+.welcome-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.welcome-header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.welcome-header p {
+    font-size: 1.3rem;
+    opacity: 0.9;
+}
+
+.section-title {
+    font-size: 2rem;
+    text-align: center;
+    margin: 50px 0 20px;
+}
+
+.exams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    margin-bottom: 60px;
+}
+
+.exam-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 18px;
+    padding: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.4s ease;
+}
+
+.exam-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.22);
+}
+
+.exam-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.exam-info {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    margin: 8px 0;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 12px;
+}
+
+.status-pending {
+    background: #f39c12;
+    color: white;
+}
+
+.status-inprogress {
+    background: #3498db;
+    color: white;
+}
+
+.status-completed {
+    background: #27ae60;
+    color: white;
+}
+
+.exam-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    flex: 1;
+    min-width: 120px;
+}
+
+.btn-primary {
+    background: linear-gradient(to right, #667eea, #764ba2);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-success {
+    background: #27ae60;
+    color: white;
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.profile-section {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    border-radius: 18px;
+    padding: 30px;
+    max-width: 600px;
+    margin: 0 auto 60px;
+    text-align: center;
+}
+
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(to right, #667eea, #764ba2);
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: white;
+}
+
+/* ==================== LOGOUT MODAL (FULLY INCLUDED - IDENTICAL TO ADMIN) ==================== */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    color: #2c3e50;
+    padding: 35px;
+    border-radius: 18px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    animation: modalFadeIn 0.35s ease-out;
+}
+
+.modal-content h3 {
+    color: #e74c3c;
+    font-size: 1.6em;
+    margin-bottom: 15px;
+}
+
+.modal-content p {
+    color: #7f8c8d;
+    margin-bottom: 30px;
+    font-size: 1.1em;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.modal-btn {
+    padding: 12px 28px;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 110px;
+}
+
+.btn-confirm {
+    background: #e74c3c;
+    color: white;
+}
+
+.btn-confirm:hover {
+    background: #c0392b;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(231, 76, 60, 0.4);
+}
+
+.btn-cancel {
+    background: #ecf0f1;
+    color: #2c3e50;
+}
+
+.btn-cancel:hover {
+    background: #d4dce0;
+    transform: translateY(-3px);
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .welcome-header h1 {
+        font-size: 2.6rem;
+    }
+
+    .exam-card {
+        padding: 20px;
+    }
+
+    .modal-buttons {
+        flex-direction: column;
+    }
+}

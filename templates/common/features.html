@@ -1,0 +1,49 @@
+{% extends "common/base_public.html" %}
+
+{% block title %}Features - ExamPro{% endblock %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1 class="welcome-title">Key Features</h1>
+        <p class="welcome-subtitle">
+            ExamPro combines security, intelligence, and ease of use to deliver a modern online exam experience.
+        </p>
+    </section>
+
+    <!-- Features Grid -->
+    <section class="features-section">
+        <div class="features">
+            <div class="feature-card">
+                <span class="feature-icon">📝</span>
+                <h3>Timed MCQ Exams</h3>
+                <p>Students can take secure, timed multiple-choice exams with automatic submission when time ends.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">👀</span>
+                <h3>Smart Behavior Tracking</h3>
+                <p>Monitors tab switches, time per question, and answer patterns to ensure exam integrity.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🤖</span>
+                <h3>AI Cheating Detection</h3>
+                <p>Uses machine learning (Isolation Forest) to detect anomalies and provide a risk score with clear explanations.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">📊</span>
+                <h3>Admin Analytics Dashboard</h3>
+                <p>Real-time insights: score distribution, completion rates, and suspicious activity trends.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🔒</span>
+                <h3>Secure & Fair</h3>
+                <p>Focuses on monitoring and improvement — not punishment. Built with privacy and fairness in mind.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">⚡</span>
+                <h3>Modern Tech Stack</h3>
+                <p>Flask • SQLite • scikit-learn • Chart.js • Responsive Design</p>
+            </div>
+        </div>
+    </section>
+{% endblock %}

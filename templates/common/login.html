@@ -1,0 +1,39 @@
+{% extends "common/base_public.html" %}
+
+{% block title %}Login - ExamPro{% endblock %}
+
+{% block content %}
+<section>
+    <div class="form-page-container">
+        <div class="form-page-header">
+            <h2>Welcome Back</h2>
+            <p>Sign in to access your dashboard</p>
+        </div>
+
+        {% if error %}
+            <p style="color: red; text-align: center; font-weight: bold;">{{ error }}</p>
+        {% endif %}
+
+        <div class="modern-form-card">
+            <form method="POST" action="{{ url_for('login') }}">
+                <div class="modern-form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter username" required autofocus>
+                </div>
+
+                <div class="modern-form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter password" required>
+                </div>
+
+                <button type="submit" class="modern-submit-btn">Login</button>
+                
+                <div class="modern-btn-row">
+                    <a href="{{ url_for('forgot_password') }}" class="modern-btn-secondary">Forgot Password?</a>
+                    <a href="{{ url_for('register') }}" class="modern-btn-secondary">New Here? Sign Up</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

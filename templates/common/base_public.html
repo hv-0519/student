@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ExamPro{% endblock %}</title>
+
+    <!-- Only common.css for public pages -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
+
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+    <!-- Public Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Exam<span>Pro</span></div>
+            <div class="nav-links">
+                <a href="{{ url_for('hello') }}">Home</a>
+                <a href="{{ url_for('features') }}">Features</a>
+                <a href="{{ url_for('about_us') }}">About</a>
+                <a href="{{ url_for('login') }}" class="btn btn-login">Login</a>
+                <a href="{{ url_for('register') }}" class="btn btn-register">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Common Footer -->
+    <footer class="site-footer">
+        <p>&copy; 2026 ExamPro - Online Examination System with ML Proctoring</p>
+        <p>Built for fair, secure, and efficient assessments</p>
+    </footer>
+
+    {% block extra_js %}{% endblock %}
+</body>
+
+</html>
