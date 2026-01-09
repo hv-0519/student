@@ -690,6 +690,7 @@ def student_dashboard():
 def logout():
     return redirect(url_for("hello"))
 
-
+# To Run On Port 6969
 if __name__ == "__main__":
     app.run(port=6969, debug=True)
+
